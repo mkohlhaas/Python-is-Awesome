@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from collections.abc import Generator
+from random import random
 from time import sleep
 
 
@@ -39,3 +40,14 @@ if __name__ == "__main__":
     print(dict_num_words)
 
     print({i: i**2 for i in range(20) if i % 2 == 0})
+
+    # using a double list comprehension
+    # readibilaty suffers
+    results = [value for _ in numbers for value in [random()] if value > 0]
+    print(results)
+
+    # The same with the *Walrus Operator*.
+    # Especially helpful for expensive operations which `random` is not.
+    # https://realpython.com/python-walrus-operator/#list-comprehensions
+    results = [value for _ in numbers if (value := random()) > 0]
+    print(results)
