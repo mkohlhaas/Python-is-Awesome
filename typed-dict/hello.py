@@ -1,24 +1,27 @@
 #!/usr/bin/env python
 
-from typing import NotRequired, TypedDict
+from typing import NotRequired, ReadOnly, TypedDict
 
 
+# only jobs is not required
 class ProfileT1(TypedDict):
-    name: str
+    name: ReadOnly[str]
     age: int
     jobs: NotRequired[list[str]]
 
 
+# not all fields are required
 class ProfileT2(TypedDict, total=False):
-    name: str
+    name: ReadOnly[str]
     age: int
     jobs: list[str]
 
 
+# alternative, newer syntax
 ProfileT3 = TypedDict(
     "ProfileT3",
     {
-        "name": str,
+        "name": ReadOnly[str],
         "age": int,
         "jobs": list[str],
     },
@@ -55,8 +58,10 @@ if __name__ == "__main__":
         # "gender": "Male",
     }
 
-    # Type checker complains about "gender" as not defined.
-    # Type checker basedpyright set to "strict" in pyproject.toml.
+    profile1["name"] = "Michael"
+    profile2["name"] = "Michael"
+    profile3["name"] = "Michael"
+
     profile1["gender"] = "Male"
     profile2["gender"] = "Male"
     profile3["gender"] = "Male"
