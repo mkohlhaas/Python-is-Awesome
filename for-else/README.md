@@ -1,0 +1,3 @@
+- 'for' loops also have an else clause.
+- The else clause executes after the loop completes normally.
+- This means that the loop did not encounter a break statement. 

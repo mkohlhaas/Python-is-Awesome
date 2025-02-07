@@ -4,6 +4,11 @@ from collections.abc import Generator
 from random import random
 from time import sleep
 
+names = [
+    "Daniel",
+    "Mike",
+    "William",
+]
 
 if __name__ == "__main__":
     # list compprehension (snippet: lc)
@@ -17,7 +22,7 @@ if __name__ == "__main__":
     evens2: set[int] = {i for i in range(100) if i % 2 == 0}
     print(evens2)
 
-    # generator compprehension
+    # generator comprehension
     evens3: Generator[int, None, None] = (i for i in range(100) if i % 2 == 0)
     for i in evens3:
         print(i, end="\r")
@@ -51,3 +56,6 @@ if __name__ == "__main__":
     # https://realpython.com/python-walrus-operator/#list-comprehensions
     results = [value for _ in numbers if (value := random()) > 0]
     print(results)
+
+    # another easy example for dictionary comprehensions
+    print({name: len(name) for name in names})
